@@ -343,7 +343,6 @@ var RTTY = {
 		};
 		var states = {
 			"waiting": function () {
-				console.log("waiting")
 				if (current.data === -1) {
 					current.state = "start";
 				} else {
@@ -352,14 +351,12 @@ var RTTY = {
 			},
 			"start": function () {
 				if (unit <= current.total) {
-					console.log("start")
 					// console.log('start bit');
 					current.total = 0;
 					current.state = "data";
 				}
 			},
 			"data": function () {
-				console.log("data")
 				if (current.data ===  1) current.mark++;
 				if (current.data === -1) current.space++;
 				if (unit <= current.total) {
@@ -377,7 +374,6 @@ var RTTY = {
 			},
 			"stop": function () {
 				if (unit <= current.total) {
-					console.log("stop")
 					// console.log('stop bit');
 					var char = current.set[current.byte];
 					if (char === "\x0f") {
